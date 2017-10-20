@@ -119,27 +119,10 @@
   
   <build>
     <sourceDirectory>src</sourceDirectory>
-    <plugins>
     
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.5.1</version>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
-      </plugin>
-      
-      <plugin>
-		<groupId>org.apache.maven.plugins</groupId>
-		<artifactId>maven-eclipse-plugin</artifactId>
-		<version>2.9</version>
-		<configuration>
-			<downloadSources>true</downloadSources>
-			<downloadJavadocs>true</downloadJavadocs>
-		</configuration>
-	  </plugin>
-      
+    <plugins>   
+         
+      <!-- Plugin Maven to Ignore XML Config file -->	
       <plugin>
         <artifactId>maven-war-plugin</artifactId>
         <version>3.0.0</version>
@@ -155,19 +138,15 @@
       <version>9.2.1.v20140609</version>
       <configuration>
         <httpConnector>
-          <!--host>localhost</host-->
-          <port>9999</port>
+        	<port>9999</port>
         </httpConnector>
-        
         <webApp>
-				<contextPath>/pizzaria</contextPath>
-			</webApp>
-			
+        	<contextPath>/pizzaria</contextPath>
+		</webApp>	
       </configuration>
     </plugin>
-
-      
     </plugins>
+    
   </build>
   
 </project>
