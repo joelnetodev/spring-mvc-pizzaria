@@ -22,6 +22,8 @@ public class StartWebApplication implements WebApplicationInitializer
 		dynamicAppServlet.setLoadOnStartup(1);
 		
 		//mapp de URL - Controllers
+		//Se colocar /app/ o endereço fica = localhost:porta/pizzaria/app/...
+		//o /pizzaria/ esta no jetty em pom.xml
 		dynamicAppServlet.addMapping("/");
 		
 		//Auxilia na criação das classes spring
@@ -32,6 +34,7 @@ public class StartWebApplication implements WebApplicationInitializer
 	private AnnotationConfigWebApplicationContext createWebApplicationContext()
 	{
 		//Contexto que gerencia os objetos e classes do projeto
+		//Caminho de onde estão as classes de configuração
 		AnnotationConfigWebApplicationContext webappContext = new AnnotationConfigWebApplicationContext();
 		webappContext.setConfigLocation("com.joelnetodev.pizzaria.configuration");
 		

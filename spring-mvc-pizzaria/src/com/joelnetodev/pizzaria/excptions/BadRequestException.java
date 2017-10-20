@@ -1,9 +1,9 @@
-package com.joelnetodev.pizzaria.configuration;
+package com.joelnetodev.pizzaria.excptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value=HttpStatus.BAD_REQUEST)
-public class ErroException extends RuntimeException {
+public class BadRequestException extends RuntimeException {
 
 }

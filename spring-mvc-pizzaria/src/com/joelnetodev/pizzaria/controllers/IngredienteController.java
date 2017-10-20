@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.joelnetodev.pizzaria.configuration.ErroException;
 import com.joelnetodev.pizzaria.entities.Ingrediente;
 import com.joelnetodev.pizzaria.entities.enums.CategoriaIngredienteEnum;
+import com.joelnetodev.pizzaria.excptions.BadRequestException;
 import com.joelnetodev.pizzaria.repositories.IIngredienteRepository;
 
 @Controller
@@ -52,7 +52,7 @@ public class IngredienteController
 		if(bindingRes.hasErrors())
 		{
 			//redirectAtt.addFlashAttribute("mensagem", "Sucesso");
-			throw new ErroException();
+			throw new BadRequestException();
 		}
 		else
 		{
@@ -75,7 +75,7 @@ public class IngredienteController
 		}
 		catch(Exception ex)
 		{
-			throw new ErroException();
+			throw new BadRequestException();
 		}
 		
 	}
