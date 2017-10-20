@@ -64,7 +64,7 @@ public class ConfigurationDataBase
 		
 		//Cada banco tem sua sintaxe (dialeto), Hibernate vai trabalhar com sintaxe do MySql
 		props.put("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
-		props.put("hibernate.hbm2ddl.auto", "update");
+		//props.put("hibernate.hbm2ddl.auto", "update");
 		
 		return props;
 	}

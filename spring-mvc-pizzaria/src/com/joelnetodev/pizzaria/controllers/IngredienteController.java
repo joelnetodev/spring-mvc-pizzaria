@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.joelnetodev.pizzaria.configuration.exceptions.ErroException;
+import com.joelnetodev.pizzaria.configuration.ErroException;
 import com.joelnetodev.pizzaria.entities.Ingrediente;
 import com.joelnetodev.pizzaria.entities.enums.CategoriaIngredienteEnum;
 import com.joelnetodev.pizzaria.repositories.IIngredienteRepository;
