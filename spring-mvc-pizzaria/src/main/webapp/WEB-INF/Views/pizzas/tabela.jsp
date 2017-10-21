@@ -17,7 +17,7 @@
 
 <td>
 <c:forEach items="${pizza.ingredientes}" var="ingrediente">
-${ingrediente.nome} ,
+${ingrediente.nome},
 </c:forEach>
 </td>
 

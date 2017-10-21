@@ -44,7 +44,7 @@ public class IngredienteController
 		model.addAttribute(nomeAtributoModelIngredientes, _ingredienteService.consultarTodos());
 		model.addAttribute("categoriasenum", CategoriaIngredienteEnum.values());
 		
-		return "ingredientes/listagem";
+		return "ingredientes/index";
 	}
 	
 	@RequestMapping(value="/salvar/",method=RequestMethod.POST)

@@ -52,7 +52,9 @@ var cadastrarNovo = function(element)
 	var form = $("#form-pizza");
 	form.find('#id').val(0);
 	form.find('#nome').val('');
-	$("#ingrediente").val($("#categoria option:first").val());
+	form.find('#preco').val('');
+	$("#categoria").val($("#categoria option:first").val());
+	$("#ingredienteSelecionado").val($("#ingredienteSelecionado option:first").val());
 	
 	$("#modal-pizza").modal('show');
 }
@@ -82,15 +84,23 @@ var funcaoAlterar = function(element)
 	$.ajax({
 		  url: "pizzas/buscar/" + id,
 		  type: 'GET',
-		  success: function(ingrediente)
+		  success: function(pizza)
 		  {
-			  var form = $("#form-ingrediente");
+			  var form = $("#form-pizza");
 			  
-			  form.find('#id').val(ingrediente.id);
-			  form.find('#nome').val(ingrediente.nome);
-			  form.find('#categoria').val(ingrediente.categoria);
+			  form.find('#id').val(pizza.id);
+			  form.find('#nome').val(pizza.nome);
+			  form.find('#preco').val(pizza.preco);
+			  form.find('#categoria').val(pizza.categoria);
 			  
-			  $("#modal-ingrediente").modal('show');
+			  $("#ingredienteSelecionado").val($("#ingredienteSelecionado option:first").val());
+			  
+			  for (i = 0; i < pizza.ingredientes.length; i++) 
+			  { 
+				  
+			  }
+			  			  
+			  $("#modal-pizza").modal('show');
 		  },
 		  error: function()
 		  {

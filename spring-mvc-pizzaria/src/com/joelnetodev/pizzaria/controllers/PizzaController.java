@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.joelnetodev.pizzaria.dtos.PizzaDTO;
 import com.joelnetodev.pizzaria.entities.enums.CategoriaPizzaEnum;
 import com.joelnetodev.pizzaria.excptions.BadRequestException;
+import com.joelnetodev.pizzaria.services.IngredienteService;
 import com.joelnetodev.pizzaria.services.PizzaService;
 
 @Controller
@@ -25,6 +26,7 @@ public class PizzaController
 	private final String nomeAtributoModelPizzas = "pizzas";
 	
 	@Autowired PizzaService _pizzaService;
+	@Autowired IngredienteService _ingredienteService;
 	
 	@RequestMapping("/ola")
 	@ResponseBody
@@ -39,8 +41,9 @@ public class PizzaController
 		model.addAttribute("titulo", "Listagem Pizzas");
 		model.addAttribute(nomeAtributoModelPizzas, _pizzaService.consultarTodos());
 		model.addAttribute("categoriasenum", CategoriaPizzaEnum.values());
+		model.addAttribute("ingredientesLista", _ingredienteService.consultarTodos());
 		
-		return "pizzas/listagem";
+		return "pizzas/index";
 	}
 	
 	@RequestMapping(value="/salvar/",method=RequestMethod.POST)

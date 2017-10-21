@@ -24,16 +24,45 @@
         <input id="nome" name="nome" class="form-control" />
         
          <label for="nome">Preço:</label>
-        <input id="preco" name=""preco"" class="form-control" />
+        <input id="preco" name="preco" class="form-control" />
         
         <label for="categoria">Categoria:</label>
-        
         <select id="categoria" name="categoria" class="form-control" select>
         <option>Selecione... </option>
         <c:forEach items="${categoriasenum}" var="categoriaenum">
-			<option>${categoriaenum}</option>>
+			<option>${categoriaenum}</option>
 		</c:forEach>
         </select>
+        
+        
+        <br/>
+        <div align="left" width="100%">
+		<div style="display: inline-block"> <label for="ingredienteSelecionado">Ingrediente:</label>
+        <select id="ingredienteSelecionado" name="ingredienteSelecionado" class="form-control">
+        <option>Selecione... </option>
+        <c:forEach items="${ingredientesLista}" var="ingredienteItem">
+			<option data-id="${ingredienteItem.id}">${ingredienteItem.nome}</option>
+		</c:forEach>
+        </select></div>
+		<div style="display: inline-block"> <button id="btn-add" type="button" class="btn btn-primary" onclick="funcaoAdicionar()">Adicionar</button> </div>
+		</div>
+		
+<section id="secao-ingredientes">
+<table class="table table-hover table-condensed table-striped table-bodered">
+
+<tr><td>Nome</td><td>Deletar</td></tr>
+
+<c:forEach items="${ingredientes}" var="ingrediente">
+
+<tr data-id="${ingrediente.id}"> 
+<td>${ingrediente.nome}</td>
+<td><button type="button" class="btn btn-danger" onclick="funcaoDeletarIngrediente(this)">deletar</button></td>
+</tr>
+
+</c:forEach>
+</table>
+</section>
+       
       </div>
       
       <div class="modal-footer">
