@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.joelnetodev.pizzaria.dtos.PizzaDTO;
 import com.joelnetodev.pizzaria.entities.enums.CategoriaPizzaEnum;
-import com.joelnetodev.pizzaria.excptions.BadRequestException;
+import com.joelnetodev.pizzaria.exceptions.BadRequestException;
 import com.joelnetodev.pizzaria.services.IngredienteService;
 import com.joelnetodev.pizzaria.services.PizzaService;
 

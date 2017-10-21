@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.joelnetodev.pizzaria.dtos.IngredienteDTO;
 import com.joelnetodev.pizzaria.entities.Ingrediente;
 import com.joelnetodev.pizzaria.entities.enums.CategoriaIngredienteEnum;
-import com.joelnetodev.pizzaria.excptions.BadRequestException;
+import com.joelnetodev.pizzaria.exceptions.BadRequestException;
 import com.joelnetodev.pizzaria.repositories.IIngredienteRepository;
 import com.joelnetodev.pizzaria.services.IngredienteService;
 
