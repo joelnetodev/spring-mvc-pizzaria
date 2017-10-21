@@ -28,11 +28,11 @@ public class IngredienteController
 	
 	@Autowired IIngredienteRepository _ingredienteRepository;
 	
-	@RequestMapping("/ola/{nomequalquer}")
+	@RequestMapping("/ola")
 	@ResponseBody
-	public String ola(@PathVariable("nomequalquer") String nome)
+	public String ola()
 	{
-		return "Hellow Ingrediente " + nome;
+		return "Hello Ingrediente";
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
@@ -45,22 +45,20 @@ public class IngredienteController
 		return "ingredientes/listagem";
 	}
 	
-	@RequestMapping(method=RequestMethod.POST)
-	public String salvar(@Valid @ModelAttribute Ingrediente ingrediente, 
-			BindingResult bindingRes, RedirectAttributes redirectAtt, Model model)
+	@RequestMapping(value="/salvar/",method=RequestMethod.POST)
+	public String salvar(@Valid @ModelAttribute Ingrediente ingrediente, Model model)
 	{
-		if(bindingRes.hasErrors())
-		{
-			//redirectAtt.addFlashAttribute("mensagem", "Sucesso");
-			throw new BadRequestException();
-		}
-		else
+		try
 		{
 			_ingredienteRepository.save(ingrediente);
+			
+			model.addAttribute(nomeAtributoModelIngredientes, _ingredienteRepository.findAll());
+			return "ingredientes/tabela";
 		}
-		
-		model.addAttribute(nomeAtributoModelIngredientes, _ingredienteRepository.findAll());
-		return "ingredientes/tabela";
+		catch(Exception ex)
+		{
+			throw new BadRequestException();
+		}
 	}
 	
 	@RequestMapping("/delete/{id}")
@@ -77,7 +75,21 @@ public class IngredienteController
 		{
 			throw new BadRequestException();
 		}
-		
+	}
+	
+	@RequestMapping("/buscar/{id}")
+	@ResponseBody
+	public Ingrediente buscar(@PathVariable int id)
+	{
+		try
+		{
+			Ingrediente ingrediente = _ingredienteRepository.findOne(id);
+			return ingrediente;
+		}
+		catch(Exception ex)
+		{
+			throw new BadRequestException();
+		}
 	}
 	
 }

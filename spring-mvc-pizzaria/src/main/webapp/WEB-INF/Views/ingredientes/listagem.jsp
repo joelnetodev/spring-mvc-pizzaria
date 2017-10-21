@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Pizzaria</title>
+<title>Pizzaria - Ingredientes</title>
 
 <c:set var="path" value="${pageContext.request.contextPath}" scope="request"/>
 
@@ -29,15 +29,15 @@ ${mensagem}
 </div>
 </c:if>
 
+<!-- Tabela -->
 <section id="secao-tabela">
 <jsp:include page="tabela.jsp"></jsp:include>
 </section>
-
-<!-- Chama Modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-ingrediente">Cadastrar Ingrediente</button>
 
 </section>
 
+<!-- Modal -->
 <jsp:include page="modal.jsp"></jsp:include>
 
 <script type="text/javascript" src="${path}/resources/js/jquery.min.js"></script>
@@ -47,15 +47,17 @@ ${mensagem}
 
 var funcaoSalvar = function()
 {
-	var url = "ingredientes";
+	var url = "ingredientes/salvar/";
 	var ingrediente = $("#form-ingrediente").serialize();
 		
 	$.post(url, ingrediente)
-	.done(function(pagina){
+	.done(function(paginaRetorno){
 			
-		$("#secao-tabela").html(pagina.toString());
+		$("#secao-tabela").html(paginaRetorno.toString());
 		$("#modal-ingrediente").modal('hide');
-		alert('Salvo');
+		alert('Salvo com sucesso.');
+		
+		funcaoLimpar();
 	})
 	.fail(function(){
 		alert('Erro')
@@ -63,25 +65,19 @@ var funcaoSalvar = function()
 }
 
 var funcaoUpdate = function(element)
-{
-	var id = $(element).parents('tr').data('id');
-	alert(id);
-}
-
-var funcaoDelete = function(element)
-{
-
-	if(!confirm('Tem certeza que deseja deletar?'))
-		return;
-		
+{	
 	var id = $(element).parents('tr').data('id');
 	$.ajax({
-		  url: "ingredientes/delete/" + id,
+		  url: "ingredientes/buscar/" + id,
 		  type: 'GET',
-		  success: function(result)
+		  success: function(ingrediente)
 		  {
-			  $("#secao-tabela").html(result.toString());
-			  alert('Deletado');
+			  var form = $("#form-ingrediente");
+			  
+			  form.find('#nome').val(ingrediente.nome);
+			  form.find('#categoria').val(ingrediente.categoria);
+			  
+			  $("#modal-ingrediente").modal('show');
 		  },
 		  error: function()
 		  {
@@ -89,6 +85,37 @@ var funcaoDelete = function(element)
 		  }
 	});
 }
+
+var funcaoDelete = function(element)
+{
+	if(!confirm('Tem certeza que deseja deletar?'))
+		return;
+		
+	var id = $(element).parents('tr').data('id');
+	$.ajax({
+		  url: "ingredientes/delete/" + id,
+		  type: 'GET',
+		  success: function(paginaRetorno)
+		  {
+			  $("#secao-tabela").html(paginaRetorno.toString());
+			  alert('Deletado com sucesso.');
+		  },
+		  error: function()
+		  {
+			  alert('Erro');
+		  }
+	});
+}
+
+var funcaoLimpar = function()
+{
+	var form = $("#form-ingrediente");
+	
+	form.find('#id').val('');
+	form.find('#nome').val('');
+	form.find('#categoria').val('');
+}
+
 </script>
 	
 </body>

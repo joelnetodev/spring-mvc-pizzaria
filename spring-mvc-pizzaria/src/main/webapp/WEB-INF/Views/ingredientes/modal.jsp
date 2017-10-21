@@ -18,6 +18,8 @@
       </div>
       <div class="modal-body">
         
+        <input type="hidden" name="id" id="id" />
+        
         <label for="nome">Nome:</label>
         <input id="nome" name="nome" class="form-control" />
         
