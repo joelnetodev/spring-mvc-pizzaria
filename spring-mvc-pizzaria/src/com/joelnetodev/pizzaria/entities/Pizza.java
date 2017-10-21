@@ -3,10 +3,13 @@ package com.joelnetodev.pizzaria.entities;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.validation.constraints.NotNull;
 
 import com.joelnetodev.pizzaria.entities.enums.CategoriaPizzaEnum;
@@ -27,7 +30,15 @@ public class Pizza {
 	@NotNull
 	private CategoriaPizzaEnum Categoria;
 
-	@ManyToMany
+	//One to many para mapear e FetchType.EAGER para lazy load
+	//O mapeamento é de 3 tabelas: pizza, ingrediente e pizza_ingrediente
+	//Não existem 3 entidades, so existem 2, então faz-se o mapeia inverso para o retono ser da entidade ingrediente
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinTable(
+            name="pizza_ingrediente",
+            joinColumns = @JoinColumn( name="pizza_id"),
+            inverseJoinColumns = @JoinColumn( name="ingrediente_id")
+    )
 	private List<Ingrediente> Ingredientes;
 
 

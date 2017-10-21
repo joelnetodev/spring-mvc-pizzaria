@@ -1,9 +1,14 @@
 package com.joelnetodev.pizzaria.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import com.joelnetodev.pizzaria.entities.enums.CategoriaIngredienteEnum;
@@ -21,6 +26,13 @@ public class Ingrediente {
 	@NotNull
 	private CategoriaIngredienteEnum Categoria;
 
+	@OneToMany
+	@JoinTable(
+            name="pizza_ingrediente",
+            joinColumns = @JoinColumn( name="ingrediente_id"),
+            inverseJoinColumns = @JoinColumn( name="pizza_id")
+    )
+	private List<Pizza> Pizzas;
 	
 	public int getId() {
 		return Id;
@@ -44,6 +56,14 @@ public class Ingrediente {
 
 	public void setCategoria(CategoriaIngredienteEnum categoria) {
 		this.Categoria = categoria;
+	}
+	
+	public List<Pizza> getPizzas() {
+		return Pizzas;
+	}
+
+	public void setPizzas(List<Pizza> pizzas) {
+		this.Pizzas = pizzas;
 	}
 
 	@Override

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Pizzaria - Ingredientes</title>
+<title>Pizzaria - Pizzas</title>
 
 <c:set var="endereco" value="${pageContext.request.contextPath}" scope="request"/>
 
@@ -17,6 +17,7 @@
 		
 </head>
 <body>
+
 <section class="container">
 
 <h1>${titulo}</h1>
@@ -33,6 +34,7 @@ ${mensagem}
 <section id="secao-tabela">
 <jsp:include page="tabela.jsp"></jsp:include>
 </section>
+
 <button type="button" class="btn btn-primary" onclick="cadastrarNovo()">Cadastrar Ingrediente</button>
 
 </section>
@@ -45,19 +47,19 @@ ${mensagem}
 
 <script type="text/javascript">
 
-var cadastrarNovo = function()
+var cadastrarNovo = function(element)
 {	
-	var form = $("#form-ingrediente");
+	var form = $("#form-pizza");
 	form.find('#id').val(0);
 	form.find('#nome').val('');
-	$("#categoria").val($("#categoria option:first").val());
+	$("#ingrediente").val($("#categoria option:first").val());
 	
-	$("#modal-ingrediente").modal('show');
+	$("#modal-pizza").modal('show');
 }
 
 var funcaoSalvar = function()
 {
-	var url = "ingredientes/salvar/";
+	var url = "pizzas/salvar/";
 	var ingrediente = $("#form-ingrediente").serialize();
 		
 	$.post(url, ingrediente)
@@ -78,7 +80,7 @@ var funcaoAlterar = function(element)
 {	
 	var id = $(element).parents('tr').data('id');
 	$.ajax({
-		  url: "ingredientes/buscar/" + id,
+		  url: "pizzas/buscar/" + id,
 		  type: 'GET',
 		  success: function(ingrediente)
 		  {
@@ -104,7 +106,7 @@ var funcaoDeletar = function(element)
 		
 	var id = $(element).parents('tr').data('id');
 	$.ajax({
-		  url: "ingredientes/deletar/" + id,
+		  url: "pizzas/deletar/" + id,
 		  type: 'GET',
 		  success: function(paginaRetorno)
 		  {

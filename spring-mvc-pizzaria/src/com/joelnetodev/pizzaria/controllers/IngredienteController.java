@@ -59,11 +59,12 @@ public class IngredienteController
 		}
 		catch(Exception ex)
 		{
+			System.out.println(ex.getMessage());
 			throw new BadRequestException();
 		}
 	}
 	
-	@RequestMapping("/delete/{id}")
+	@RequestMapping("/deletar/{id}")
 	public String deletar(@PathVariable int id, Model model)
 	{
 		try
@@ -75,6 +76,7 @@ public class IngredienteController
 		}
 		catch(Exception ex)
 		{
+			System.out.println(ex.getMessage());
 			throw new BadRequestException();
 		}
 	}
@@ -89,6 +91,7 @@ public class IngredienteController
 		}
 		catch(Exception ex)
 		{
+			System.out.println(ex.getMessage());
 			throw new BadRequestException();
 		}
 	}

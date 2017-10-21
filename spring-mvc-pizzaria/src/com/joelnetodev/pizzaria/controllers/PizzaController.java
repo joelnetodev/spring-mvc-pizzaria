@@ -1,23 +1,95 @@
 package com.joelnetodev.pizzaria.controllers;
 
+import java.io.Console;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.joelnetodev.pizzaria.repositories.IPizzaRepository;
+import com.joelnetodev.pizzaria.dtos.PizzaDTO;
+import com.joelnetodev.pizzaria.entities.enums.CategoriaPizzaEnum;
+import com.joelnetodev.pizzaria.excptions.BadRequestException;
+import com.joelnetodev.pizzaria.services.PizzaService;
 
 @Controller
 @RequestMapping("/pizzas")
 public class PizzaController 
 {
-	@Autowired IPizzaRepository _pizzaRepository;
+	private final String nomeAtributoModelPizzas = "pizzas";
 	
-	@RequestMapping("/ola/{nomequalquer}")
+	@Autowired PizzaService _pizzaService;
+	
+	@RequestMapping("/ola")
 	@ResponseBody
-	public String ola(@PathVariable("nomequalquer") String nome)
+	public String ola()
 	{
-		return "Hellow Pizza " + nome;
+		return "Hello Pizzas";
 	}
+	
+	@RequestMapping(method=RequestMethod.GET)
+	public String listar(Model model)
+	{	
+		model.addAttribute("titulo", "Listagem Pizzas");
+		model.addAttribute(nomeAtributoModelPizzas, _pizzaService.consultarTodos());
+		model.addAttribute("categoriasenum", CategoriaPizzaEnum.values());
+		
+		return "pizzas/listagem";
+	}
+	
+	@RequestMapping(value="/salvar/",method=RequestMethod.POST)
+	public String salvar(@Valid @ModelAttribute PizzaDTO pizzaDto, Model model)
+	{
+		try
+		{
+			_pizzaService.salvar(pizzaDto);
+			
+			model.addAttribute(nomeAtributoModelPizzas, _pizzaService.consultarTodos());
+			return "pizzas/tabela";
+		}
+		catch(Exception ex)
+		{
+			System.out.println(ex.getMessage());
+			throw new BadRequestException();
+		}
+	}
+	
+	@RequestMapping("/deletar/{id}")
+	public String deletar(@PathVariable int id, Model model)
+	{
+		try
+		{
+			_pizzaService.deletar(id);
+			
+			model.addAttribute(nomeAtributoModelPizzas, _pizzaService.consultarTodos());
+			return "pizzas/tabela";
+		}
+		catch(Exception ex)
+		{
+			System.out.println(ex.getMessage());
+			throw new BadRequestException();
+		}
+	}
+	
+	@RequestMapping("/buscar/{id}")
+	@ResponseBody
+	public PizzaDTO buscar(@PathVariable int id)
+	{
+		try
+		{
+			return _pizzaService.consultarPorId(id);
+		}
+		catch(Exception ex)
+		{
+			System.out.println(ex.getMessage());
+			throw new BadRequestException();
+		}
+	}
+	
 }

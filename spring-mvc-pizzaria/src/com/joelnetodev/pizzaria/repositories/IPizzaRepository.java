@@ -8,5 +8,5 @@ import com.joelnetodev.pizzaria.entities.Pizza;
 @Repository
 public interface IPizzaRepository extends CrudRepository <Pizza, Integer>
 {
-
+	 
 }

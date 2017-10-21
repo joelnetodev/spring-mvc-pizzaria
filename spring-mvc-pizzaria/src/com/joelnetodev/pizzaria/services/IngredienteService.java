@@ -2,6 +2,7 @@ package com.joelnetodev.pizzaria.services;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class IngredienteService
 		return converterParaIngredienteDto(ingrediente);
 	}
 	
-	public ArrayList<IngredienteDTO> consultarTodos()
+	public List<IngredienteDTO> consultarTodos()
 	{
 		Iterable<Ingrediente> ingrediente = _ingredienteRepository.findAll();
 		
@@ -41,9 +42,9 @@ public class IngredienteService
 		_ingredienteRepository.save(ingrediente);
 	}
 	
-	private ArrayList<IngredienteDTO> converterParaIngredientesDto(Iterable<Ingrediente> ingredientes)
+	public static List<IngredienteDTO> converterParaIngredientesDto(Iterable<Ingrediente> ingredientes)
 	{
-		ArrayList ingredientesDtos = new ArrayList<IngredienteDTO>();
+		List<IngredienteDTO> ingredientesDtos = new ArrayList<IngredienteDTO>();
 		for (Ingrediente ingrediente : ingredientes) 
 		{
 			ingredientesDtos.add(converterParaIngredienteDto(ingrediente));
@@ -52,7 +53,7 @@ public class IngredienteService
 		return ingredientesDtos;
 	}
 	
-	private IngredienteDTO converterParaIngredienteDto(Ingrediente ingrediente)
+	public static IngredienteDTO converterParaIngredienteDto(Ingrediente ingrediente)
 	{
 		IngredienteDTO ingredienteDto = new IngredienteDTO();
 		
@@ -63,7 +64,7 @@ public class IngredienteService
 		return ingredienteDto;
 	}
 	
-	private Ingrediente converterParaIngrediente(IngredienteDTO ingredienteDto)
+	public static Ingrediente converterParaIngrediente(IngredienteDTO ingredienteDto)
 	{
 		Ingrediente ingrediente = new Ingrediente();
 		
@@ -74,5 +75,17 @@ public class IngredienteService
 		ingrediente.setCategoria(ingredienteDto.getCategoria());
 		
 		return ingrediente;
+	}
+	
+	public static List<Ingrediente> converterParaIngredientes(List<IngredienteDTO> ingredientesDto)
+	{
+		List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
+		
+		for (IngredienteDTO ingredienteDto : ingredientesDto) 
+		{
+			ingredientes.add(converterParaIngrediente(ingredienteDto));
+		}
+		
+		return ingredientes;
 	}
 }
