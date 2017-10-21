@@ -22,7 +22,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 public class ConfigurationDataBase 
 {
 	//O nome dos metodos precisam ser esses, spring busca pelo nome fixo via reflection
-		@Bean
+	@Bean
 	public JpaTransactionManager transactionManager() throws Exception 
 	{
 		//Gerenciador de transações do spring
@@ -41,7 +41,7 @@ public class ConfigurationDataBase
 		entityManagerFactoryBean.setPackagesToScan("com.joelnetodev.pizzaria.entities");
 		entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
 		entityManagerFactoryBean.setJpaDialect(new HibernateJpaDialect());
-		entityManagerFactoryBean.setJpaProperties(getProperties());
+		entityManagerFactoryBean.setJpaProperties(propriedades());
 		
 		return entityManagerFactoryBean;
 	}
@@ -58,7 +58,7 @@ public class ConfigurationDataBase
 		return dataSource;
 	}
 	
-	private Properties getProperties()
+	private Properties propriedades()
 	{
 		Properties props = new Properties();
 		

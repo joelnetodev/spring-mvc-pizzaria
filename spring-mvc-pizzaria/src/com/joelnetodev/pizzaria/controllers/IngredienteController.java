@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.joelnetodev.pizzaria.dtos.IngredienteDTO;
 import com.joelnetodev.pizzaria.entities.Ingrediente;
 import com.joelnetodev.pizzaria.entities.enums.CategoriaIngredienteEnum;
 import com.joelnetodev.pizzaria.excptions.BadRequestException;
 import com.joelnetodev.pizzaria.repositories.IIngredienteRepository;
+import com.joelnetodev.pizzaria.services.IngredienteService;
 
 @Controller
 @RequestMapping("/ingredientes")
@@ -26,7 +28,7 @@ public class IngredienteController
 {
 	private final String nomeAtributoModelIngredientes = "ingredientes";
 	
-	@Autowired IIngredienteRepository _ingredienteRepository;
+	@Autowired IngredienteService _ingredienteService;
 	
 	@RequestMapping("/ola")
 	@ResponseBody
@@ -39,20 +41,20 @@ public class IngredienteController
 	public String listar(Model model)
 	{	
 		model.addAttribute("titulo", "Listagem Ingredientes");
-		model.addAttribute(nomeAtributoModelIngredientes, _ingredienteRepository.findAll());
+		model.addAttribute(nomeAtributoModelIngredientes, _ingredienteService.consultarTodos());
 		model.addAttribute("categoriasenum", CategoriaIngredienteEnum.values());
 		
 		return "ingredientes/listagem";
 	}
 	
 	@RequestMapping(value="/salvar/",method=RequestMethod.POST)
-	public String salvar(@Valid @ModelAttribute Ingrediente ingrediente, Model model)
+	public String salvar(@Valid @ModelAttribute IngredienteDTO ingredienteDto, Model model)
 	{
 		try
 		{
-			_ingredienteRepository.save(ingrediente);
+			_ingredienteService.salvar(ingredienteDto);
 			
-			model.addAttribute(nomeAtributoModelIngredientes, _ingredienteRepository.findAll());
+			model.addAttribute(nomeAtributoModelIngredientes, _ingredienteService.consultarTodos());
 			return "ingredientes/tabela";
 		}
 		catch(Exception ex)
@@ -66,9 +68,9 @@ public class IngredienteController
 	{
 		try
 		{
-			_ingredienteRepository.delete(id);
+			_ingredienteService.deletar(id);
 			
-			model.addAttribute(nomeAtributoModelIngredientes, _ingredienteRepository.findAll());
+			model.addAttribute(nomeAtributoModelIngredientes, _ingredienteService.consultarTodos());
 			return "ingredientes/tabela";
 		}
 		catch(Exception ex)
@@ -79,12 +81,11 @@ public class IngredienteController
 	
 	@RequestMapping("/buscar/{id}")
 	@ResponseBody
-	public Ingrediente buscar(@PathVariable int id)
+	public IngredienteDTO buscar(@PathVariable int id)
 	{
 		try
 		{
-			Ingrediente ingrediente = _ingredienteRepository.findOne(id);
-			return ingrediente;
+			return _ingredienteService.consultarPorId(id);
 		}
 		catch(Exception ex)
 		{

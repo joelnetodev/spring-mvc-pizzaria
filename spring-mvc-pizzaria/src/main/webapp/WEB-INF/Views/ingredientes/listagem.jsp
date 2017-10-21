@@ -33,7 +33,7 @@ ${mensagem}
 <section id="secao-tabela">
 <jsp:include page="tabela.jsp"></jsp:include>
 </section>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-ingrediente">Cadastrar Ingrediente</button>
+<button type="button" class="btn btn-primary" onclick="mostrarModal(this)">Cadastrar Ingrediente</button>
 
 </section>
 
@@ -45,6 +45,16 @@ ${mensagem}
 
 <script type="text/javascript">
 
+var mostrarModal = function(){
+	
+	var form = $("#form-ingrediente");
+	form.find('#id').val(0);
+	form.find('#nome').val('');
+	$("#categoria").val($("#categoria option:first").val());
+	
+	$("#modal-ingrediente").modal('show');
+}
+
 var funcaoSalvar = function()
 {
 	var url = "ingredientes/salvar/";
@@ -55,16 +65,16 @@ var funcaoSalvar = function()
 			
 		$("#secao-tabela").html(paginaRetorno.toString());
 		$("#modal-ingrediente").modal('hide');
+		
 		alert('Salvo com sucesso.');
 		
-		funcaoLimpar();
 	})
 	.fail(function(){
 		alert('Erro')
 	});
 }
 
-var funcaoUpdate = function(element)
+var funcaoAlterar = function(element)
 {	
 	var id = $(element).parents('tr').data('id');
 	$.ajax({
@@ -74,6 +84,7 @@ var funcaoUpdate = function(element)
 		  {
 			  var form = $("#form-ingrediente");
 			  
+			  form.find('#id').val(ingrediente.id);
 			  form.find('#nome').val(ingrediente.nome);
 			  form.find('#categoria').val(ingrediente.categoria);
 			  
@@ -86,7 +97,7 @@ var funcaoUpdate = function(element)
 	});
 }
 
-var funcaoDelete = function(element)
+var funcaoDeletar = function(element)
 {
 	if(!confirm('Tem certeza que deseja deletar?'))
 		return;
@@ -105,15 +116,6 @@ var funcaoDelete = function(element)
 			  alert('Erro');
 		  }
 	});
-}
-
-var funcaoLimpar = function()
-{
-	var form = $("#form-ingrediente");
-	
-	form.find('#id').val('');
-	form.find('#nome').val('');
-	form.find('#categoria').val('');
 }
 
 </script>

@@ -9,12 +9,13 @@
 <tr><td>Nome</td><td>Categoria</td><td>Editar</td><td>Deletar</td></tr>
 
 <c:forEach items="${ingredientes}" var="ingrediente">
+
 <tr data-id="${ingrediente.id}"> 
 <td>${ingrediente.nome}</td>
 <td>${ingrediente.categoria}</td>
-<td><button type="button" class="btn btn-primary" onclick="funcaoUpdate(this)">editar</button></td>
-<td><button type="button" class="btn btn-danger" onclick="funcaoDelete(this)">deletar</button></td>
- </tr>
+<td><button type="button" class="btn btn-primary" onclick="funcaoAlterar(this)">editar</button></td>
+<td><button type="button" class="btn btn-danger" onclick="funcaoDeletar(this)">deletar</button></td>
+</tr>
 
 </c:forEach>
 
