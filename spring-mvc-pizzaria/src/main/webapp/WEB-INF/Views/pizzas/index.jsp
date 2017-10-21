@@ -35,7 +35,7 @@ ${mensagem}
 <jsp:include page="tabela.jsp"></jsp:include>
 </section>
 
-<button type="button" class="btn btn-primary" onclick="cadastrarNovo()">Cadastrar Ingrediente</button>
+<button type="button" class="btn btn-primary" onclick="cadastrarNovo()">Cadastrar Pizza</button>
 
 </section>
 
@@ -62,13 +62,13 @@ var cadastrarNovo = function(element)
 var funcaoSalvar = function()
 {
 	var url = "pizzas/salvar/";
-	var ingrediente = $("#form-ingrediente").serialize();
+	var ingrediente = $("#form-pizza").serialize();
 		
 	$.post(url, ingrediente)
 	.done(function(paginaRetorno){
 			
 		$("#secao-tabela").html(paginaRetorno.toString());
-		$("#modal-ingrediente").modal('hide');
+		$("#modal-pizza").modal('hide');
 		
 		alert('Salvo com sucesso.');
 		

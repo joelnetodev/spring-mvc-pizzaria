@@ -48,7 +48,7 @@ public class IngredienteController
 	}
 	
 	@RequestMapping(value="/salvar/",method=RequestMethod.POST)
-	public String salvar(@Valid @ModelAttribute IngredienteDTO ingredienteDto, Model model)
+	public String salvar(IngredienteDTO ingredienteDto, Model model)
 	{
 		try
 		{

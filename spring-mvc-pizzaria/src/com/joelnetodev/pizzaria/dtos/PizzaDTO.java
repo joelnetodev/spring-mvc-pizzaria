@@ -1,12 +1,12 @@
 package com.joelnetodev.pizzaria.dtos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.joelnetodev.pizzaria.entities.enums.CategoriaPizzaEnum;
 
 public class PizzaDTO
 {
-
 	private int Id;
 	private String Nome;
 	private double Preco;
@@ -50,5 +50,9 @@ public class PizzaDTO
 	public void setIngredientes(List<IngredienteDTO> ingredientes) {
 		this.Ingredientes = ingredientes;
 	}
-
+	
+	public PizzaDTO()
+	{
+		Ingredientes = new ArrayList<IngredienteDTO>();
+	}
 }

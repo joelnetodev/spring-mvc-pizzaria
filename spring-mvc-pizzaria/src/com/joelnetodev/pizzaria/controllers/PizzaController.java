@@ -47,7 +47,7 @@ public class PizzaController
 	}
 	
 	@RequestMapping(value="/salvar/",method=RequestMethod.POST)
-	public String salvar(@Valid @ModelAttribute PizzaDTO pizzaDto, Model model)
+	public String salvar(PizzaDTO pizzaDto, Model model)
 	{
 		try
 		{
