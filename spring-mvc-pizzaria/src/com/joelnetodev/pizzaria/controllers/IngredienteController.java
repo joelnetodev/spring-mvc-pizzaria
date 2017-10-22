@@ -28,8 +28,10 @@ public class IngredienteController
 {
 	private final String nomeAtributoModelIngredientes = "ingredientes";
 	
+	//Autowired é a IoC automatica pelo spring
 	@Autowired IngredienteService _ingredienteService;
 	
+	//ResponseBody quando retorno é em string, ou JSON
 	@RequestMapping("/ola")
 	@ResponseBody
 	public String ola()

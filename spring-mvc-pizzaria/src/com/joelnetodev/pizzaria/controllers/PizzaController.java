@@ -1,6 +1,7 @@
 package com.joelnetodev.pizzaria.controllers;
 
 import java.io.Console;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,7 +39,7 @@ public class PizzaController
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String listar(Model model)
-	{	
+	{			
 		model.addAttribute("titulo", "Listagem Pizzas");
 		model.addAttribute(nomeAtributoModelPizzas, _pizzaService.consultarTodos());
 		model.addAttribute("categoriasenum", CategoriaPizzaEnum.values());
@@ -46,12 +48,12 @@ public class PizzaController
 		return "pizzas/index";
 	}
 	
-	@RequestMapping(value="/salvar/",method=RequestMethod.POST)
-	public String salvar(PizzaDTO pizzaDto, Model model)
-	{
+	@RequestMapping(value="/salvar/",method=RequestMethod.POST, produces = "application/json", consumes = "application/json")
+	public String salvar(@RequestBody PizzaDTO pizzaDto, Model model) throws Exception
+	{	
 		try
 		{
-			_pizzaService.salvar(pizzaDto);
+			//_pizzaService.salvar(pizzaDto);
 			
 			model.addAttribute(nomeAtributoModelPizzas, _pizzaService.consultarTodos());
 			return "pizzas/tabela";
@@ -94,5 +96,4 @@ public class PizzaController
 			throw new BadRequestException();
 		}
 	}
-	
 }

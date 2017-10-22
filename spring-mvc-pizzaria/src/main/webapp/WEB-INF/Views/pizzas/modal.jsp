@@ -47,21 +47,14 @@
 		<div style="display: inline-block"> <button id="btn-add" type="button" class="btn btn-primary" onclick="funcaoAdicionar()">Adicionar</button> </div>
 		</div>
 		
-<section id="secao-ingredientes">
-<table class="table table-hover table-condensed table-striped table-bodered">
+<br>
+<table class="table table-hover table-condensed table-striped table-bodered" id="tabela-ingredientes" name="tabela-ingredientes">
 
-<tr><td>Nome</td><td>Deletar</td></tr>
+<tr><td>Ingrediente</td><td></td></tr>
+<tr data-id="1"><td>Cebola</td><td><button type="button" class="btn btn-danger" onclick="funcaoDeletarIngrediente(this)">deletar</button></td></tr>
+<tr data-id="4"><td>Tomate</td><td><button type="button" class="btn btn-danger" onclick="funcaoDeletarIngrediente(this)">deletar</button></td></tr>
 
-<c:forEach items="${ingredientes}" var="ingrediente">
-
-<tr data-id="${ingrediente.id}"> 
-<td>${ingrediente.nome}</td>
-<td><button type="button" class="btn btn-danger" onclick="funcaoDeletarIngrediente(this)">deletar</button></td>
-</tr>
-
-</c:forEach>
 </table>
-</section>
        
       </div>
       

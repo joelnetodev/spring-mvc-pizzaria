@@ -61,21 +61,57 @@ var cadastrarNovo = function(element)
 
 var funcaoSalvar = function()
 {
-	var url = "pizzas/salvar/";
-	var ingrediente = $("#form-pizza").serialize();
+	var url = "pizzas/salvar/";	
+	var pizza = obterPizza();
 		
-	$.post(url, ingrediente)
-	.done(function(paginaRetorno){
-			
-		$("#secao-tabela").html(paginaRetorno.toString());
-		$("#modal-pizza").modal('hide');
-		
-		alert('Salvo com sucesso.');
-		
-	})
-	.fail(function(){
-		alert('Erro')
+	console.log(pizza);
+	
+	$.ajax({ 
+	    url:url,
+	    data: pizza,
+	    contentType: "application/json",
+	    type:"POST",
+	    success: (function(paginaRetorno)
+	    		{
+	    			$("#secao-tabela").html(paginaRetorno.toString());
+	    			$("#modal-pizza").modal('hide');
+	    			alert('Salvo com sucesso.');
+	    		})
+		})
+		.fail(function(data){
+			  alert("Erro");
+		});
+}
+
+function obterPizza()
+{
+	var form = $("#form-pizza");
+	
+	var pizza = {
+		id: Number(form.find('#id').val()),
+		nome: form.find('#nome').val(), 
+		preco: Number(form.find('#preco').val()),
+		categoria: form.find('#categoria').val(),
+		ingredientes: obterIngredientes()
+		};
+
+	return JSON.stringify(pizza);
+} 
+
+function obterIngredientes()
+{
+	var ingredientes = [];
+	
+	$("#tabela-ingredientes tr").each(function() 
+	{
+		var id = $(this).data('id');
+		if(id != null && id != 0)
+		{
+			ingredientes.push({id: Number(id), nome: null, categoria: null});
+		}
 	});
+	
+	return ingredientes;
 }
 
 var funcaoAlterar = function(element)
@@ -107,6 +143,12 @@ var funcaoAlterar = function(element)
 			  alert('Erro');
 		  }
 	});
+}
+
+var funcaoDeletarIngrediente = function(element)
+{
+	var id = $(element).parents('tr').data('id');
+	alert(id);
 }
 
 var funcaoDeletar = function(element)
