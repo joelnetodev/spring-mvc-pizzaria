@@ -84,12 +84,10 @@ public class PizzaService
 		for (int i = 0; i < pizzaDto.getIngredientes().size(); i++) 
 		{
 			idList[i] = pizzaDto.getIngredientes().get(i).getId();
-			System.out.println(idList[i]);
 		}
 		
-		System.out.println("fazer consulta");
+		//consulto ingredientes da minha lista de ids do DTO
 		pizza.setIngredientes(_ingredienteRepository.consultarPorIds(idList));
-		System.out.println("feita");
 		
 		return pizza;
 	}

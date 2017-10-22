@@ -76,6 +76,8 @@ var funcaoAlterar = function(element)
 		  type: 'GET',
 		  success: function(pizza)
 		  {
+			  //o retorno é um dto de pizza (json)
+			  
 			  var form = $("#form-pizza");
 			  
 			  form.find('#id').val(pizza.id);
@@ -143,6 +145,7 @@ var funcaoSalvar = function()
 		
 	console.log(pizza);
 	
+	//requisição com ajaxa e json
 	$.ajax({ 
 	    url:url,
 	    data: pizza,
@@ -164,6 +167,7 @@ function obterPizzaJson()
 {
 	var form = $("#form-pizza");
 	
+	//cria um objeto pizza
 	var pizza = {
 		id: Number(form.find('#id').val()),
 		nome: form.find('#nome').val(), 
@@ -172,6 +176,7 @@ function obterPizzaJson()
 		ingredientes: obterIngredientes()
 		};
 
+	//serializa com json
 	return JSON.stringify(pizza);
 } 
 
@@ -184,6 +189,8 @@ function obterIngredientes()
 		var id = $(this).data('id');
 		if(id != null && id != 0)
 		{
+			//Quando salvar ingrediente, colocar nome com '' e categoria nula 
+			//(quando converte para dto o enum tem que ir vazio, e também da erro se nome for nulo)
 			ingredientes.push({id: Number(id), nome: '', categoria: null});
 		}
 	});
@@ -196,6 +203,7 @@ var funcaoLimparTabela = function(tabela)
 {
 	$(tabela).find("tr").each(function() 
 	{
+		//não deleta a primeira linha
 		var id = $(this).data('id');
 		if(id != null && id != 0)
 		{

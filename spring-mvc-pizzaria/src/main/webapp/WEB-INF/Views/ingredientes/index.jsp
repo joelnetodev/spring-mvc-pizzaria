@@ -58,6 +58,8 @@ var cadastrarNovo = function()
 var funcaoSalvar = function()
 {
 	var url = "ingredientes/salvar/";
+	
+	//serializo o form, pois é um formulario normal
 	var ingrediente = $("#form-ingrediente").serialize();
 		
 	$.post(url, ingrediente)
