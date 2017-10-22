@@ -48,6 +48,7 @@ public class PizzaController
 		return "pizzas/index";
 	}
 	
+	//requesto body para aceitar um json e já converter ele para o DTO
 	@RequestMapping(value="/salvar/",method=RequestMethod.POST, produces = "application/json", consumes = "application/json")
 	public String salvar(@RequestBody PizzaDTO pizzaDto, Model model) throws Exception
 	{	

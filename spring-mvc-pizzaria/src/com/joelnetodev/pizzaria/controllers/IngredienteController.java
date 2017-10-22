@@ -31,7 +31,7 @@ public class IngredienteController
 	//Autowired é a IoC automatica pelo spring
 	@Autowired IngredienteService _ingredienteService;
 	
-	//ResponseBody quando retorno é em string, ou JSON
+	//ResponseBody quando retorno é em string, JSON
 	@RequestMapping("/ola")
 	@ResponseBody
 	public String ola()
