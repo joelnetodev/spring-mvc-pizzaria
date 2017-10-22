@@ -53,7 +53,7 @@ public class PizzaController
 	{	
 		try
 		{
-			//_pizzaService.salvar(pizzaDto);
+			_pizzaService.salvar(pizzaDto);
 			
 			model.addAttribute(nomeAtributoModelPizzas, _pizzaService.consultarTodos());
 			return "pizzas/tabela";

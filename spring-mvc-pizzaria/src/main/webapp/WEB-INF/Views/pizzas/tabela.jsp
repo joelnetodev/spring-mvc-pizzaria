@@ -27,5 +27,5 @@ ${ingrediente.nome},
 
 </c:forEach>
 
-<tr><td colspan="4">Total: ${ingredientes.size()}</td></tr>
+<tr><td colspan="6">Total: ${pizzas.size()}</td></tr>
 </table>

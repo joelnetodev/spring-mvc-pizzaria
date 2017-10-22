@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.joelnetodev.pizzaria.dtos.PizzaDTO;
+import com.joelnetodev.pizzaria.entities.Ingrediente;
 import com.joelnetodev.pizzaria.entities.Pizza;
 import com.joelnetodev.pizzaria.repositories.IIngredienteRepository;
 import com.joelnetodev.pizzaria.repositories.IPizzaRepository;
@@ -18,6 +19,7 @@ public class PizzaService
 	@Autowired IIngredienteRepository _ingredienteRepository;
 	@Autowired IPizzaRepository _pizzaRepository;
 	
+	
 	public PizzaDTO consultarPorId(int id)
 	{
 		Pizza pizza = _pizzaRepository.findOne(id);
@@ -26,9 +28,7 @@ public class PizzaService
 	}
 	
 	public List<PizzaDTO> consultarTodos()
-	{
-		_ingredienteRepository.consultarPorIds(new int[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20});
-		
+	{	
 		Iterable<Pizza> pizzas = _pizzaRepository.findAll();
 		
 		return converterParaPizzasDto(pizzas);
@@ -79,9 +79,18 @@ public class PizzaService
 		pizza.setNome(pizzaDto.getNome());
 		pizza.setPreco(pizzaDto.getPreco());
 		pizza.setCategoria(pizzaDto.getCategoria());
+			
+		int[] idList = new int[pizzaDto.getIngredientes().size()];
+		for (int i = 0; i < pizzaDto.getIngredientes().size(); i++) 
+		{
+			idList[i] = pizzaDto.getIngredientes().get(i).getId();
+			System.out.println(idList[i]);
+		}
 		
-		pizza.setIngredientes(IngredienteService.converterParaIngredientes(pizzaDto.getIngredientes()));
-				
+		System.out.println("fazer consulta");
+		pizza.setIngredientes(_ingredienteRepository.consultarPorIds(idList));
+		System.out.println("feita");
+		
 		return pizza;
 	}
 }

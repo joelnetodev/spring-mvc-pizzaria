@@ -41,18 +41,15 @@
         <select id="ingredienteSelecionado" name="ingredienteSelecionado" class="form-control">
         <option>Selecione... </option>
         <c:forEach items="${ingredientesLista}" var="ingredienteItem">
-			<option data-id="${ingredienteItem.id}">${ingredienteItem.nome}</option>
+			<option value="${ingredienteItem.id}">${ingredienteItem.nome}</option>
 		</c:forEach>
         </select></div>
-		<div style="display: inline-block"> <button id="btn-add" type="button" class="btn btn-primary" onclick="funcaoAdicionar()">Adicionar</button> </div>
+		<div style="display: inline-block"> <button id="btn-add" type="button" class="btn btn-primary" onclick="funcaoAdicionarIngrediente()">Adicionar</button> </div>
 		</div>
 		
 <br>
 <table class="table table-hover table-condensed table-striped table-bodered" id="tabela-ingredientes" name="tabela-ingredientes">
-
-<tr><td>Ingrediente</td><td></td></tr>
-<tr data-id="1"><td>Cebola</td><td><button type="button" class="btn btn-danger" onclick="funcaoDeletarIngrediente(this)">deletar</button></td></tr>
-<tr data-id="4"><td>Tomate</td><td><button type="button" class="btn btn-danger" onclick="funcaoDeletarIngrediente(this)">deletar</button></td></tr>
+<tr><td>Ingrediente</td><td>Deletar</td></tr>
 
 </table>
        

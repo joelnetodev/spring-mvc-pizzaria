@@ -47,7 +47,62 @@ ${mensagem}
 
 <script type="text/javascript">
 
-var cadastrarNovo = function(element)
+var funcaoDeletar = function(element)
+{
+	if(!confirm('Tem certeza que deseja deletar?'))
+		return;
+		
+	var id = $(element).parents('tr').data('id');
+	$.ajax({
+		  url: "pizzas/deletar/" + id,
+		  type: 'GET',
+		  success: function(paginaRetorno)
+		  {
+			  $("#secao-tabela").html(paginaRetorno.toString());
+			  alert('Deletado com sucesso.');
+		  },
+		  error: function()
+		  {
+			  alert('Erro');
+		  }
+	});
+}
+
+var funcaoAlterar = function(element)
+{	
+	var id = $(element).parents('tr').data('id');
+	$.ajax({
+		  url: "pizzas/buscar/" + id,
+		  type: 'GET',
+		  success: function(pizza)
+		  {
+			  var form = $("#form-pizza");
+			  
+			  form.find('#id').val(pizza.id);
+			  form.find('#nome').val(pizza.nome);
+			  form.find('#preco').val(pizza.preco);
+			  form.find('#categoria').val(pizza.categoria);
+			  
+			  $("#ingredienteSelecionado").val($("#ingredienteSelecionado option:first").val());
+			  var tabela = $("#tabela-ingredientes");
+			  funcaoLimparTabela(tabela);
+			  
+			  for (i = 0; i < pizza.ingredientes.length; i++) 
+			  { 
+				  var ingrediente = pizza.ingredientes[i];
+				  funcaoAdicionarLinhaTabela(tabela, ingrediente.id, ingrediente.nome);
+			  }
+			  			  
+			  $("#modal-pizza").modal('show');
+		  },
+		  error: function()
+		  {
+			  alert('Erro');
+		  }
+	});
+}
+
+var cadastrarNovo = function()
 {	
 	var form = $("#form-pizza");
 	form.find('#id').val(0);
@@ -56,13 +111,35 @@ var cadastrarNovo = function(element)
 	$("#categoria").val($("#categoria option:first").val());
 	$("#ingredienteSelecionado").val($("#ingredienteSelecionado option:first").val());
 	
+	var tabela = $("#tabela-ingredientes");
+	funcaoLimparTabela(tabela);
+	
 	$("#modal-pizza").modal('show');
+}
+
+var funcaoAdicionarIngrediente = function()
+{
+	var id = $('#ingredienteSelecionado option:selected').val()
+	var nome = $("#ingredienteSelecionado option:selected").text();
+	
+	var tabela = $("#tabela-ingredientes");
+	funcaoAdicionarLinhaTabela(tabela, id, nome);
+}
+
+var funcaoAdicionarLinhaTabela = function(tabela, id, nome)
+{
+	$(tabela).append('<tr data-id="' + id + '"><td>'+ nome +'</td><td><button type="button" class="btn btn-danger" onclick="funcaoDeletarIngrediente(this)">deletar</button></td></tr>');
+}
+
+var funcaoDeletarIngrediente = function(element)
+{
+	var id = $(element).parents('tr').remove();
 }
 
 var funcaoSalvar = function()
 {
 	var url = "pizzas/salvar/";	
-	var pizza = obterPizza();
+	var pizza = obterPizzaJson();
 		
 	console.log(pizza);
 	
@@ -83,7 +160,7 @@ var funcaoSalvar = function()
 		});
 }
 
-function obterPizza()
+function obterPizzaJson()
 {
 	var form = $("#form-pizza");
 	
@@ -107,69 +184,24 @@ function obterIngredientes()
 		var id = $(this).data('id');
 		if(id != null && id != 0)
 		{
-			ingredientes.push({id: Number(id), nome: null, categoria: null});
+			ingredientes.push({id: Number(id), nome: '', categoria: null});
 		}
 	});
 	
 	return ingredientes;
 }
 
-var funcaoAlterar = function(element)
-{	
-	var id = $(element).parents('tr').data('id');
-	$.ajax({
-		  url: "pizzas/buscar/" + id,
-		  type: 'GET',
-		  success: function(pizza)
-		  {
-			  var form = $("#form-pizza");
-			  
-			  form.find('#id').val(pizza.id);
-			  form.find('#nome').val(pizza.nome);
-			  form.find('#preco').val(pizza.preco);
-			  form.find('#categoria').val(pizza.categoria);
-			  
-			  $("#ingredienteSelecionado").val($("#ingredienteSelecionado option:first").val());
-			  
-			  for (i = 0; i < pizza.ingredientes.length; i++) 
-			  { 
-				  
-			  }
-			  			  
-			  $("#modal-pizza").modal('show');
-		  },
-		  error: function()
-		  {
-			  alert('Erro');
-		  }
-	});
-}
 
-var funcaoDeletarIngrediente = function(element)
+var funcaoLimparTabela = function(tabela)
 {
-	var id = $(element).parents('tr').data('id');
-	alert(id);
-}
-
-var funcaoDeletar = function(element)
-{
-	if(!confirm('Tem certeza que deseja deletar?'))
-		return;
-		
-	var id = $(element).parents('tr').data('id');
-	$.ajax({
-		  url: "pizzas/deletar/" + id,
-		  type: 'GET',
-		  success: function(paginaRetorno)
-		  {
-			  $("#secao-tabela").html(paginaRetorno.toString());
-			  alert('Deletado com sucesso.');
-		  },
-		  error: function()
-		  {
-			  alert('Erro');
-		  }
-	});
+	$(tabela).find("tr").each(function() 
+	{
+		var id = $(this).data('id');
+		if(id != null && id != 0)
+		{
+			$(this).remove();
+		}
+    });
 }
 
 </script>

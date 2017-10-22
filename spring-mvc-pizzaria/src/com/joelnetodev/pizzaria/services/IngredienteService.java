@@ -53,7 +53,7 @@ public class IngredienteService
 		return ingredientesDtos;
 	}
 	
-	public static IngredienteDTO converterParaIngredienteDto(Ingrediente ingrediente)
+	private static IngredienteDTO converterParaIngredienteDto(Ingrediente ingrediente)
 	{
 		IngredienteDTO ingredienteDto = new IngredienteDTO();
 		
@@ -64,7 +64,7 @@ public class IngredienteService
 		return ingredienteDto;
 	}
 	
-	public static Ingrediente converterParaIngrediente(IngredienteDTO ingredienteDto)
+	private Ingrediente converterParaIngrediente(IngredienteDTO ingredienteDto)
 	{
 		Ingrediente ingrediente = new Ingrediente();
 		
@@ -77,7 +77,7 @@ public class IngredienteService
 		return ingrediente;
 	}
 	
-	public static List<Ingrediente> converterParaIngredientes(List<IngredienteDTO> ingredientesDto)
+	private List<Ingrediente> converterParaIngredientes(List<IngredienteDTO> ingredientesDto)
 	{
 		List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
 		
