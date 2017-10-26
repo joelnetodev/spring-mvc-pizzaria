@@ -11,7 +11,6 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 public class StartWebApplication implements WebApplicationInitializer 
 {
-	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException 
 	{
 		AnnotationConfigWebApplicationContext webAppContext = createWebApplicationContext();
@@ -27,7 +26,7 @@ public class StartWebApplication implements WebApplicationInitializer
 		dynamicAppServlet.addMapping("/");
 		
 		//Auxilia na criação das classes spring
-		//EX: Criar instancia de controllador se não houver e se precisar
+		//EX: Criar instancia de controllador se não houver e se precisar (pagina acessada sem controller)
 		//servletContext.addListener(new ContextLoaderListener(webAppContext));
 	}
 	

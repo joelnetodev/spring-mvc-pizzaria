@@ -3,6 +3,7 @@ package com.joelnetodev.pizzaria.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,9 +19,9 @@ public class IngredienteService
 	
 	public IngredienteDTO consultarPorId(int id)
 	{
-		Ingrediente ingrediente = _ingredienteRepository.findOne(id);
-		
-		return converterParaIngredienteDto(ingrediente);
+		Ingrediente ingredienteO = _ingredienteRepository.findOne(id);
+					
+		return converterParaIngredienteDto(ingredienteO);
 	}
 	
 	public List<IngredienteDTO> consultarTodos()

@@ -19,6 +19,8 @@
 <body>
 <section class="container">
 
+<jsp:include page="../menu/menu.jsp"></jsp:include>
+
 <h1>${titulo}</h1>
 
 <c:if test="${not empty mensagem}">

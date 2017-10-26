@@ -13,7 +13,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 //Ex: Se a classe estiver com a notation, ele disponibiliza no container
 @EnableWebMvc
 @Configuration
-@ComponentScan(basePackages="com.joelnetodev.pizzaria") 
+@ComponentScan({ "com.joelnetodev.pizzaria" })
 public class ConfigurationWeb extends WebMvcConfigurerAdapter 
 {
 	@Override

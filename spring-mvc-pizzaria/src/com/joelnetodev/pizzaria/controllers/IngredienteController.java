@@ -13,13 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.joelnetodev.pizzaria.dtos.IngredienteDTO;
-import com.joelnetodev.pizzaria.entities.Ingrediente;
 import com.joelnetodev.pizzaria.entities.enums.CategoriaIngredienteEnum;
-import com.joelnetodev.pizzaria.exceptions.BadRequestException;
-import com.joelnetodev.pizzaria.repositories.IIngredienteRepository;
 import com.joelnetodev.pizzaria.services.IngredienteService;
 
 @Controller
@@ -50,7 +46,7 @@ public class IngredienteController
 	}
 	
 	@RequestMapping(value="/salvar/",method=RequestMethod.POST)
-	public String salvar(IngredienteDTO ingredienteDto, Model model)
+	public String salvar(IngredienteDTO ingredienteDto, Model model) throws Exception
 	{
 		try
 		{
@@ -62,12 +58,12 @@ public class IngredienteController
 		catch(Exception ex)
 		{
 			System.out.println(ex.getMessage());
-			throw new BadRequestException();
+			throw ex;
 		}
 	}
 	
 	@RequestMapping("/deletar/{id}")
-	public String deletar(@PathVariable int id, Model model)
+	public String deletar(@PathVariable int id, Model model) throws Exception
 	{
 		try
 		{
@@ -79,13 +75,13 @@ public class IngredienteController
 		catch(Exception ex)
 		{
 			System.out.println(ex.getMessage());
-			throw new BadRequestException();
+			throw ex;
 		}
 	}
 	
 	@RequestMapping("/buscar/{id}")
 	@ResponseBody
-	public IngredienteDTO buscar(@PathVariable int id)
+	public IngredienteDTO buscar(@PathVariable int id) throws Exception
 	{
 		try
 		{
@@ -94,7 +90,7 @@ public class IngredienteController
 		catch(Exception ex)
 		{
 			System.out.println(ex.getMessage());
-			throw new BadRequestException();
+			throw ex;
 		}
 	}
 	
