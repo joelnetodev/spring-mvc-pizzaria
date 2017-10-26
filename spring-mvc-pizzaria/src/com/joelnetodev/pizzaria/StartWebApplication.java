@@ -1,8 +1,8 @@
 package com.joelnetodev.pizzaria;
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletRegistration.Dynamic;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRegistration.Dynamic;
 
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
@@ -27,7 +27,7 @@ public class StartWebApplication implements WebApplicationInitializer
 		
 		//Auxilia na criação das classes spring
 		//EX: Criar instancia de controllador se não houver e se precisar (pagina acessada sem controller)
-		//servletContext.addListener(new ContextLoaderListener(webAppContext));
+		servletContext.addListener(new ContextLoaderListener(webAppContext));
 	}
 	
 	private AnnotationConfigWebApplicationContext createWebApplicationContext()
