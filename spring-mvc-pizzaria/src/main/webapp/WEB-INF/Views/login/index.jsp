@@ -32,7 +32,7 @@
 							<div class="col-md-4 col-md-offset-3">
 								<form id="login-form" action="login/acessar" method="post" role="form" style="display: block;">
 									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Login" value="">
+										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="usuario" value="">
 									</div>
 									<div class="form-group">
 										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Senha">

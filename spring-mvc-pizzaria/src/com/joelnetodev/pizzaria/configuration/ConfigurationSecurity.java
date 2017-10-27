@@ -20,28 +20,33 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @EnableWebSecurity
 public class ConfigurationSecurity extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder authenticationMgr) throws Exception {
-		authenticationMgr.inMemoryAuthentication()
-			.withUser("nanana")
-			.password("nanana")
-			.authorities("ROLE_USER");
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		//auth
+			//.userDetailsService(servicoAutenticacao)
+			//.passwordEncoder(encoder());
+		auth.inMemoryAuthentication().withUser("admin").password("admin").roles("PIZZARIA");
 	}
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		    .antMatchers("/ingredientes/*", "/pizzas/*").denyAll()
-			.antMatchers("/login").access("hasRole('ROLE_USER')")
-			.and()
-				.formLogin().loginPage("/login")
-				.defaultSuccessUrl("/inicio")
-				.failureUrl("/login?error")
-				.usernameParameter("usuario").passwordParameter("senha")				
-			.and()
-				.logout().logoutSuccessUrl("/login?logout"); 
-		
+        .antMatchers("/login").permitAll()
+        .anyRequest().authenticated()
+        .and()
+    .formLogin()
+        .loginPage("/login")
+        .permitAll()
+        .and()
+    .logout()
+        .permitAll();
 	}
+	
+	@Override
+    public void configure(WebSecurity web) throws Exception {
+		//Ignora o resources, se não a segurança barra o acesso ao css, javascript e imagens
+        web.ignoring().antMatchers("/resources/**").anyRequest();
+    }
 }
 
 
