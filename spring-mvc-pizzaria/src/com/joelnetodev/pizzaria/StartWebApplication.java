@@ -9,6 +9,7 @@ import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
+//Classe inicial que inicia a aplicação e configuração web de um WAR file
 public class StartWebApplication implements WebApplicationInitializer 
 {
 	public void onStartup(ServletContext servletContext) throws ServletException 
@@ -27,7 +28,7 @@ public class StartWebApplication implements WebApplicationInitializer
 		
 		//Auxilia na criação das classes spring
 		//EX: Criar instancia de controllador se não houver e se precisar (pagina acessada sem controller)
-		servletContext.addListener(new ContextLoaderListener(webAppContext));
+		//servletContext.addListener(new ContextLoaderListener(webAppContext));
 	}
 	
 	private AnnotationConfigWebApplicationContext createWebApplicationContext()

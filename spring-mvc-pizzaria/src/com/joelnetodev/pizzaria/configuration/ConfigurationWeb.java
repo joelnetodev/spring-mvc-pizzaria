@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
-//Informa ao Spring quais pacotes deve escanear as classes de configuração
+//ComponentScan informa ao Spring quais pacotes deve escanear as classes de configuração e injeção
 //Ex: Se a classe estiver com a notation, ele disponibiliza no container
 @EnableWebMvc
 @Configuration
@@ -21,6 +21,7 @@ public class ConfigurationWeb extends WebMvcConfigurerAdapter
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) 
 	{
+		//Mapemaneto das paginas web
 		//Por padrão as páginas ficam dentro de webapp
 		UrlBasedViewResolver urlResolver = new UrlBasedViewResolver();
 		urlResolver.setPrefix("/WEB-INF/Views/");
