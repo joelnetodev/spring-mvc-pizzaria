@@ -25,5 +25,30 @@
 <h1>${titulo}</h1>
 
 
+ 
+   <div class="container">
+
+						<div class="row">
+							<div class="col-md-4 col-md-offset-3">
+								<form id="login-form" action="login/acessar" method="post" role="form" style="display: block;">
+									<div class="form-group">
+										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Login" value="">
+									</div>
+									<div class="form-group">
+										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Senha">
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-primary" value="Log In">
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+	</div>
+
+</section>
 </body>
 </html>

@@ -8,13 +8,13 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <p class="navbar-brand">PIZZARIA</p>
+            <a href="${endereco}" class="navbar-brand">PIZZARIA</a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li><a href="${endereco}/ingredientes">Ingredientes</a></li>
               <li><a href="${endereco}/pizzas">Pizzas</a></li>
-              <li><a href="#">Sair</a></li>
+              <li><a href="${endereco}/login">Login</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->

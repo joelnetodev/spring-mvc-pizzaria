@@ -24,8 +24,7 @@ import com.joelnetodev.pizzaria.services.PizzaService;
 @Controller
 @RequestMapping("/login")
 public class LoginController 
-{
-		
+{	
 	@RequestMapping(method=RequestMethod.GET)
 	public String login(Model model)
 	{			
@@ -33,13 +32,27 @@ public class LoginController
 		return "login/index";
 	}
 	
-	//requesto body para aceitar um json e já converter ele para o DTO
-	@RequestMapping(value="/acessar/",method=RequestMethod.POST, produces = "application/json", consumes = "application/json")
-	public String acessar(@RequestBody PizzaDTO pizzaDto, Model model) throws Exception
+	@RequestMapping(value="/acessar", method=RequestMethod.POST)
+	public String acessar(Model model) throws Exception
 	{	
 		try
 		{
-			return "principal/index";
+			return "inicio/index";
+		}
+		catch(Exception ex)
+		{
+			System.out.println(ex.getMessage());
+			throw new BadRequestException();
+		}
+	}
+	
+	@RequestMapping(value="/sair")
+	public String sair(Model model) throws Exception
+	{	
+		try
+		{
+			model.addAttribute("titulo", "Login");
+			return "login/index";
 		}
 		catch(Exception ex)
 		{

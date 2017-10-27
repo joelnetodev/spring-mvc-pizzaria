@@ -3,7 +3,9 @@ package com.joelnetodev.pizzaria.configuration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.RedirectViewControllerRegistration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.JstlView;
@@ -32,4 +34,11 @@ public class ConfigurationWeb extends WebMvcConfigurerAdapter
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/WEB-INF/resources/");
     }
+	
+	@Override
+	public void addViewControllers (ViewControllerRegistry registry) 
+	{
+		//Adiciono um controller para o endereço '/' que retorna a view indext dentro de inicio
+		registry.addViewController("/").setViewName("inicio/index");
+	}
 }

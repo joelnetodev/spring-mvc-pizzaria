@@ -20,7 +20,7 @@
 
 <section class="container">
 
-<jsp:include page="menu/menu.jsp"></jsp:include>
+<jsp:include page="../menu/menu.jsp"></jsp:include>
 
 <h1>Inicio</h1>
 
