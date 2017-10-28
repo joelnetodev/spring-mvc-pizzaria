@@ -37,6 +37,7 @@ public class LoginController
 	{	
 		try
 		{
+			System.out.println("tentou acessar");
 			return "inicio/index";
 		}
 		catch(Exception ex)
