@@ -28,9 +28,12 @@
  
    <div class="container">
 
+<!--cria o form com a ação da pagina de login e e o _csrf token para enviar os dados criptografados (pode disabilitar na websecurity com csrf.disable()) -->
+
 						<div class="row">
 							<div class="col-md-4 col-md-offset-3">
-								<form id="login-form" action="login/acessar" method="post" role="form" style="display: block;">
+    						<form th:action="@{/login}" method="post">
+								 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 									<div class="form-group">
 										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="usuario" value="">
 									</div>

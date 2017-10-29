@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Pizzaria - Login</title>
+<title>Pizzaria - Inicio</title>
 
 <c:set var="endereco" value="${pageContext.request.contextPath}" scope="request"/>
 

@@ -40,6 +40,8 @@ public class ConfigurationWeb extends WebMvcConfigurerAdapter
 	public void addViewControllers (ViewControllerRegistry registry) 
 	{
 		//Adiciono um controller para o endereço '/' que retorna a view indext dentro de inicio
-		registry.addViewController("/").setViewName("inicio/index");
+		registry.addViewController("inicio").setViewName("inicio/index");
+		
+		registry.addViewController("login").setViewName("login/index");
 	}
 }
