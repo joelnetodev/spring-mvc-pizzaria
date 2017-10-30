@@ -22,9 +22,7 @@
 
 <jsp:include page="../menu/menu.jsp"></jsp:include>
 
-<h1>${titulo}</h1>
-
-
+<h1>Login</h1>
  
    <div class="container">
 
