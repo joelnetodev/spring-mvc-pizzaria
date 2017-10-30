@@ -53,5 +53,9 @@
 	</div>
 
 </section>
+
+<script type="text/javascript" src="${endereco}/resources/js/jquery.min.js"></script>
+<script type="text/javascript" src="${endereco}/resources/bootstrap/js/bootstrap.min.js"></script>
+
 </body>
 </html>

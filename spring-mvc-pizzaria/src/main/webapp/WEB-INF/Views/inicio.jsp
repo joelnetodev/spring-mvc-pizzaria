@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Pizzaria - Inicio</title>
+<title>Pizzaria - Login</title>
 
 <c:set var="endereco" value="${pageContext.request.contextPath}" scope="request"/>
 
@@ -20,15 +20,11 @@
 
 <section class="container">
 
-<jsp:include page="../menu/menu.jsp"></jsp:include>
+<jsp:include page="menu/menu.jsp"></jsp:include>
 
 <h1>Inicio</h1>
 
 Bem vindo a pizzaria
-
-
-<script type="text/javascript" src="${endereco}/resources/js/jquery.min.js"></script>
-<script type="text/javascript" src="${endereco}/resources/bootstrap/js/bootstrap.min.js"></script>
 
 </body>
 </html>

@@ -26,8 +26,7 @@
             <c:if test="${not empty pageContext.request.userPrincipal.name}" >
             
             <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${pageContext.request.userPrincipal.name}<span class="caret"></span></a>
+              <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#">${pageContext.request.userPrincipal.name}<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="${endereco}/logout">Sair</a></li>
                 </ul>
