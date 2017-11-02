@@ -17,6 +17,9 @@ public class ConfigurationSecurity extends WebSecurityConfigurerAdapter
     @Override
     protected void configure(HttpSecurity http) throws Exception {
     	
+    	//Disabilita verificação pelo csrf token para autorização de POST
+    	http.csrf().disable();
+    	
     	//Tem que dizer que permite login e resources, que é onde ficam as imagens, css e js
     	http.authorizeRequests()
         .antMatchers("/login/**", "/resources/**").permitAll()
@@ -32,7 +35,6 @@ public class ConfigurationSecurity extends WebSecurityConfigurerAdapter
         .and()
         .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
         .permitAll();
-
     }
 
     @Autowired

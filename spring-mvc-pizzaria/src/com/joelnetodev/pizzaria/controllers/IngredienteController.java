@@ -52,8 +52,9 @@ public class IngredienteController
 	{
 		try
 		{
+			System.out.println("ingrediente");
 			_ingredienteService.salvar(ingredienteDto);
-			
+			System.out.println("salvou");
 			model.addAttribute(nomeAtributoModelIngredientes, _ingredienteService.consultarTodos());
 			return "ingredientes/tabela";
 		}

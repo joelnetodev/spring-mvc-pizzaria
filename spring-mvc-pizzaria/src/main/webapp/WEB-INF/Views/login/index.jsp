@@ -31,7 +31,7 @@
 						<div class="row">
 							<div class="col-md-4 col-md-offset-3">
     						<form th:action="@{/login}" method="post">
-								 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+								 <!--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />-->
 									<div class="form-group">
 										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="usuario" value="">
 									</div>
