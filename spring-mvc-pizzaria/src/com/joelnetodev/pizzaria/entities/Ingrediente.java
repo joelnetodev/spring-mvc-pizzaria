@@ -13,6 +13,8 @@ import javax.validation.constraints.NotNull;
 
 import com.joelnetodev.pizzaria.entities.enums.CategoriaIngredienteEnum;
 
+//Entidade ingrediente do banco de dados
+//os atributos são do Hibernate para mapear tabelas e propriedades
 @Entity
 public class Ingrediente {
 

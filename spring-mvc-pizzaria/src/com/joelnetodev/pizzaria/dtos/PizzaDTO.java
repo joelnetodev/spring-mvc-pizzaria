@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.joelnetodev.pizzaria.entities.enums.CategoriaPizzaEnum;
 
+//Essa classe representa uma pizza do banco, ela foi criada para ser um Model do MVC 
+//e para evitar que transporte a entidade Ingrediente em cada requisição.
 public class PizzaDTO
 {
 	private int Id;

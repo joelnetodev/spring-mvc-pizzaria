@@ -2,6 +2,8 @@ package com.joelnetodev.pizzaria.dtos;
 
 import com.joelnetodev.pizzaria.entities.enums.CategoriaIngredienteEnum;
 
+//Essa classe representa um ingrediente do banco, ela foi criada para ser um Model do MVC 
+//e para evitar que transporte a entidade Ingrediente em cada requisição.
 public class IngredienteDTO
 {
 

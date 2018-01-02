@@ -41,7 +41,7 @@ public class PizzaController
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String listar(Model model)
-	{			
+	{
 		model.addAttribute("titulo", "Listagem Pizzas");
 		model.addAttribute(nomeAtributoModelPizzas, _pizzaService.consultarTodos());
 		model.addAttribute("categoriasenum", CategoriaPizzaEnum.values());

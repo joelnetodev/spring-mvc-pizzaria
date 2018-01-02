@@ -21,6 +21,8 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @EnableJpaRepositories(basePackages = "com.joelnetodev.pizzaria.repositories")
 public class ConfigurationDataBase 
 {
+	//Bean geralmente são objetos de configuração que precisam ser reconhecidos e gerenciados pelo container do Spring (IoC)
+		
 	//O nome dos metodos precisam ser esses, spring busca pelo nome fixo via reflection
 	@Bean
 	public JpaTransactionManager transactionManager() throws Exception 
