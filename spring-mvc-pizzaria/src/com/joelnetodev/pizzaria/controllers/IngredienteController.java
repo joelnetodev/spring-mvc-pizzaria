@@ -20,7 +20,6 @@ import com.joelnetodev.pizzaria.entities.enums.CategoriaIngredienteEnum;
 import com.joelnetodev.pizzaria.services.IngredienteService;
 
 @Controller
-@PreAuthorize("isAuthenticated()")
 @RequestMapping("/ingredientes")
 public class IngredienteController 
 {

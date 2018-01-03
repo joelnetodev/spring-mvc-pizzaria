@@ -3,6 +3,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
+<sec:authentication var="principal" property="principal" />
+
+
 
 <br>
 <nav class="navbar navbar-default">
@@ -17,23 +25,31 @@
             <a href="${endereco}/inicio" class="navbar-brand">PIZZARIA</a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li><a href="${endereco}/ingredientes">Ingredientes</a></li>
-              <li><a href="${endereco}/pizzas">Pizzas</a></li>
-              
-            </ul>
-            
-            <c:if test="${not empty pageContext.request.userPrincipal.name}" >
+          
+          <sec:authorize access="isAuthenticated()">
+                     
+          <ul class="nav navbar-nav">
+                     
+           <!-- Verifico as permissoes do usuario para montar o menu -->
+           <sec:authentication property="principal.authorities" var="authorities" />
+           <c:forEach items="${authorities}" var="authority">
+           
+                <!-- Devido ao CaseSensitive do Map do Spring, a URL em letra maiuscula não funciona, então deixo tudo minúscula -->          
+				<li><a href="${endereco}/${fn:toLowerCase(authority.authority)}">${authority.authority}</a></li>
+		   </c:forEach>
+
+          </ul>
+                        
             
             <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#">${pageContext.request.userPrincipal.name}<span class="caret"></span></a>
+              <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#"><sec:authentication property="principal.username" /><span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="${endereco}/logout">Sair</a></li>
                 </ul>
               </li>
-            </ul>  
+            </ul>             
             
-            </c:if>
+            </sec:authorize>
             
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->

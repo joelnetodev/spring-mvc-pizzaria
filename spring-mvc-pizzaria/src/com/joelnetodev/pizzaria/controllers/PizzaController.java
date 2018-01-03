@@ -23,7 +23,6 @@ import com.joelnetodev.pizzaria.services.IngredienteService;
 import com.joelnetodev.pizzaria.services.PizzaService;
 
 @Controller
-@PreAuthorize("isAuthenticated()")
 @RequestMapping("/pizzas")
 public class PizzaController 
 {

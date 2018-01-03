@@ -32,6 +32,11 @@ public class UsuarioService implements UserDetailsService {
 		usuario.setNome(nomeUsuario);
 		usuario.setSenha(getEncoder().encode("123456"));
 		
+		//Coloco as permissões para montar o menu da pizzaria
+		//também poderia trazer isso do banco
+		usuario.getPermissoes().add("Ingredientes");
+		usuario.getPermissoes().add("Pizzas");
+		
 		return usuario;
 	}
 	

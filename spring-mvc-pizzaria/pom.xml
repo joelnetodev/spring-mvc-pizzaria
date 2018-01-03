@@ -58,11 +58,11 @@
 		</dependency>
 		  
 		<!-- spring MVC -->
-<dependency>
-    <groupId>org.springframework</groupId>
-    <artifactId>spring-webmvc</artifactId>
-    <version>4.3.12.RELEASE</version>
-</dependency>
+		<dependency>
+    		<groupId>org.springframework</groupId>
+    		<artifactId>spring-webmvc</artifactId>
+    		<version>4.3.12.RELEASE</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -85,6 +85,13 @@
 			<artifactId>spring-data-jpa</artifactId>
 			<version>1.7.4.RELEASE</version>
 		</dependency>
+		
+<!--tag de segurança -->	
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-taglibs</artifactId>
+    <version>4.1.4.RELEASE</version>
+</dependency>
 		
    		<!-- Hibernate -->	
 		<dependency>
@@ -139,7 +146,6 @@
     <artifactId>spring-security-web</artifactId>
     <version>4.1.4.RELEASE</version>
 </dependency>
-
 <dependency>
     <groupId>org.springframework.security</groupId>
     <artifactId>spring-security-core</artifactId>
